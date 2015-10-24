@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  module: MyString
+  category: MyString
+  supervisor: MyString
+  day: MyString
+  time: 2015-10-24 20:29:38
+  duration: 2015-10-24 20:29:38
+
+two:
+  module: MyString
+  category: MyString
+  supervisor: MyString
+  day: MyString
+  time: 2015-10-24 20:29:38
+  duration: 2015-10-24 20:29:38
