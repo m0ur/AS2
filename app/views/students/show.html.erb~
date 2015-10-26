@@ -32,7 +32,7 @@
 <h2> You are going to </h2>
 <ul>
 	<% @student.attendances.each do |item| %>
-	<li><%= item.event.module %></li><%= button_to 'Cancel',item.destroy %>
+	<li><%= item.event.module %></li>
 	<% end %>
 </ul>
 

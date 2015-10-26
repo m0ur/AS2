@@ -1,0 +1,17 @@
+<div class = "AS_form">
+
+Please Log in
+<%= form_tag do %>
+<fieldset>
+<div>
+<%= label_tag :id_number, 'id_number:' %>
+<%= text_field_tag :id_number, params[:id_number] %>
+</div>
+<div>
+<%= submit_tag "login" %>
+</div>
+</fieldset>
+<% end %>
+
+
+</div>

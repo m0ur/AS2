@@ -17,7 +17,7 @@
 	<% if session[:student_id_number] %>
 	<li><%= session[:student_name] %> </li>
 	<li><%= link_to "logout", logout_path %> </li>
-	<li><%= link_to "going to", student_path(session[:id]) %> </li>
+	<li><%= link_to "going to", student_path %> </li>
 	<% else %>
 	<li><%= link_to "login", login_path %> </li>
 	

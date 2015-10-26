@@ -35,7 +35,7 @@
 
 <ul>
 	<% @event.attendances.each do |item| %>
-	<li><%= item.student.name %></li><%= button_to 'Kick out',item.destroy %>
+	<li><%= item.student.name %></li><%= button_to 'Kill',item.destroy %>
 	<% end %>
 </ul>
 
