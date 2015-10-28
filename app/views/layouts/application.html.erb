@@ -7,12 +7,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<div id="banner">
+  <%= @page_title || "Attendance Sheet" %>
+</div>
 <div id="columns">
   <div id="side">
     <ul>
 	<li><%= link_to "Home", events_path %></li>
-	<li><%= link_to "New", new_event_path %></li>
+	<li><%= link_to "New Events", new_event_path %></li>
+	<li><%= link_to "New Student", new_student_path %></li>
 	<li><a href="http://www..../contact">Contact</a></li>
 	<% if session[:student_id_number] %>
 	<li><%= session[:student_name] %> </li>
@@ -20,8 +23,6 @@
 	<li><%= link_to "going to", student_path(session[:id]) %> </li>
 	<% else %>
 	<li><%= link_to "login", login_path %> </li>
-	
-	
 	<% end %>
    </ul>
  	</div>

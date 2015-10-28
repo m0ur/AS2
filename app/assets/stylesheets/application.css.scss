@@ -78,5 +78,44 @@ body {
   }
 }
 
+/* styles for the tables */
+table {
+	margin-bottom: 30px;
+	background-color: #FFFF99;
+}
+
+thead {
+	text-align:left;
+}
+
+td {
+	width: 25%;
+}
+
+.first_col {
+	
+	color : blue !important;
+
+}
+
+.module_row .first_col {
+
+	font-size: 125% !important;
+
+}
+
+.module_row .entry_col {
+
+	color : green;
+		font-size: 125%;
+
+}
+
+.entry_col {
+	text-transform: uppercase;
+
+}
+/* end of styles for tables */
+
 
 

@@ -24,10 +24,9 @@ class AttendancesController < ApplicationController
   # POST /attendances
   # POST /attendances.json
   def create
-    @student = Student.find(session[:id])
-		event = Event.find(params[:event_id])
-		@attendance = @student.attendances.build
-		@attendance.event = event
+   	event = Event.find(params[:event_id])
+		@student = Student.find(session[:id])		
+		@attendance = @student.attendances.build(event: event)
 
     respond_to do |format|
       if @attendance.save

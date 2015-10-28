@@ -14,6 +14,8 @@ class SessionsController < ApplicationController
 
   def destroy
 		session[:student_id_number] = nil
+		session[:id] = nil
+		session[:student_name] = nil
 		redirect_to events_url
   end
 end

@@ -32,9 +32,9 @@
 </tr>
 
 <tr>
-	<td><%= button_to 'who\'s going?', { :action => event_path(event.id)}, :method => :get %></td>
+	<td><%= button_to 'who\'s going?', event_path(event.id), :method => :get %></td>
 	<% if session[:student_id_number] %>
-	<td><%= button_to 'going', attendances_path(event_id: event) %> </td>
+	<td><%= button_to 'going', attendances_path(event_id: event.id) %> </td>
 	<% else %>
 	<td></td>
 	<% end %>

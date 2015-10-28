@@ -30,12 +30,10 @@
   <%= @event.duration %>
 </p>
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
 
-<ul>
+<table>
 	<% @event.attendances.each do |item| %>
-	<li><%= item.student.name %></li><%= button_to 'Kill',item.destroy %>
+	<tr><td><%= item.student.name %></td><td><%= button_to 'Kick out',event_path(event_id: item.id , :method => :delete %></td></tr>
 	<% end %>
-</ul>
+</table>
 
