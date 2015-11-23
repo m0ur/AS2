@@ -20,20 +20,16 @@
     <%= f.text_field :category %>
   </div>
   <div class="field">
-    <%= f.label :supervisor %><br>
-    <%= f.text_field :supervisor %>
-  </div>
-  <div class="field">
     <%= f.label :day %><br>
-    <%= f.text_field :day %>
+    <%= f.select :day, %w(Monday Tuesday Wednesday Thursday Friday Saturday Sunday)%> ##expert skill here!!!!!!!!!!!
   </div>
   <div class="field">
     <%= f.label :time %><br>
-    <%= f.time_select :time %>
+    <%= f.time_select :time, start_hour: 9, end_hour: 17, start_minute: 0, discard_minute: true %>
   </div>
   <div class="field">
     <%= f.label :duration %><br>
-    <%= f.time_select :duration %>
+    <%= f.time_select :duration, end_hour: 4, minute_step: 15%>
   </div>
   <div class="actions">
     <%= f.submit %>

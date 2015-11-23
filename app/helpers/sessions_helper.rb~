@@ -1,0 +1,10 @@
+module SessionsHelper
+
+	def get_student_name
+		@student_name = Student.find_by_id_number(:session[:student_id_number]).name
+	end
+	def get_student_id_number
+		@student_id_number = Student.find_by_id_number(:session[:student_id_number]).id_number
+	end
+
+end

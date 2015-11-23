@@ -33,7 +33,7 @@
 
 <tr>
 	<td><%= button_to 'who\'s going?', event_path(event.id), :method => :get %></td>
-	<% if session[:student_id_number] %>
+	<% if session[:id] %>
 	<td><%= button_to 'going', attendances_path(event_id: event.id) %> </td>
 	<% else %>
 	<td></td>

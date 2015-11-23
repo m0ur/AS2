@@ -1,0 +1,6 @@
+class ReplaceNameWithIdNumber < ActiveRecord::Migration
+  def up
+		remove_colum :events, :eventsSupervisor
+
+  end
+end

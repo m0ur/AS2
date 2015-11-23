@@ -1,0 +1,3 @@
+$('#student').html("<%= escape_javascript render(@student) %>")
+$('#attendances_table').html("<%= escape_javascript render event.attendances[0] %>")
+

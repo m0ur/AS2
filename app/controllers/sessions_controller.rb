@@ -3,19 +3,14 @@ class SessionsController < ApplicationController
   end
 
   def create
-		#student = Student.find_by_id_number(params[:id_number])
-		student = Student.find_by_id_number(params[:id_number])
-		session[:student_id_number] = student.id_number
-		session[:id] = student.id
-		session[:student_name] = student.name
+		user = User.find_by_id_number(params[:id_number])
+		session[:id_number] = user.id_number
 		redirect_to events_url
 		
   end
 
   def destroy
-		session[:student_id_number] = nil
-		session[:id] = nil
-		session[:student_name] = nil
+		session[:id_number] = nil
 		redirect_to events_url
   end
 end

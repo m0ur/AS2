@@ -1,0 +1,5 @@
+class User < ActiveRecord::Base
+  has_secure_password
+	validates :id_number, presence: true
+	uniqueness :id_number, uniqueness: true
+end

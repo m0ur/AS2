@@ -1,0 +1,5 @@
+<ul>
+	<% Event.where(id_number: teacher.id_number).find_each do |e| %>
+	<li><%= e.module %></li>
+	<% end %>
+</ul>

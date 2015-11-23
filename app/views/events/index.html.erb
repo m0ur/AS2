@@ -4,48 +4,4 @@
 
 <h1>Upcoming Events</h1>
 
-<% @events.each do |event| %>
-<table class="info_table">
-<tr class = "module_row">
-	<td class = "first_col"> Module </td>
-	<td class = "entry_col"> <%= event.module %> </td>
-</tr>
-<tr class = "catagory_row">
-	<td class = "first_col" id ="a11"> Category </td>
-	<td class = "entry_col"> <%= event.category %> </td>
-</tr>
-<tr class = "supervisor_row">
-	<td class = "first_col"> Supervisor</td>
-	<td class = "entry_col"> <%= event.supervisor %> </td>
-</tr>
-<tr class = "day_row">
-	<td class = "first_col"> Day</td>
-	<td class = "entry_col"> <%= event.day %> </td>
-</tr>
-<tr class = "time_row">
-	<td class = "first_col"> Date</td>
-	<td class = "entry_col"> <%= event.time.to_formatted_s(:time) %> </td>
-</tr>
-<tr class = "duration_row">
-	<td class = "first_col"> Duration </td>
-	<td class = "entry_col"> <%= event.duration.to_formatted_s(:time) %> </td>
-</tr>
-
-<tr>
-	<td><%= button_to 'who\'s going?', event_path(event.id), :method => :get %></td>
-	<% if session[:id] %>
-	<td><%= button_to 'going', attendances_path(event_id: event.id) %> </td>
-	<% else %>
-	<td></td>
-	<% end %>
-</tr>
-
-
-
-
-</table>
-
-
-
-
-<% end %>
+<%= render Event.all %>

@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @teacher.name %>
+</p>
+
+<p>
+  <strong>Id number:</strong>
+  <%= @teacher.id_number %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @teacher.email %>
+</p>
+
+
+<%= link_to 'Edit', edit_teacher_path(@teacher) %> |
+<%= link_to 'Back', teachers_path %>
+
+<div id="going_to">
+<h2> You are teaching:  </h2>
+<ul>
+	<% Event.where(id_number: @teacher.id_number).find_each do |item| %>
+	<li><%= item.module %></li><%= button_to 'Cancel', method: :delete , event_path(item.id) %>
+	<% end %>
+</ul>
+
+
+</div>

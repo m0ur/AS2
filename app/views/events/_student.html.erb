@@ -1,0 +1,6 @@
+<ul>
+	<li><%= student.name %></li>
+	<% student.attendances.each do |attendance| %>
+		<% module = Event.find(attendance.event_id) %>
+	<li><%= module.category %> </li>
+</ul>

@@ -8,6 +8,10 @@ Please Log in
 <%= text_field_tag :id_number, params[:id_number] %>
 </div>
 <div>
+        <%= label_tag :password, 'Password:' %>
+        <%= password_field_tag :password, params[:password] %>
+</div>
+<div>
 <%= submit_tag "login" %>
 </div>
 </fieldset>

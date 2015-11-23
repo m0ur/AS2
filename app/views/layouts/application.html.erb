@@ -6,30 +6,60 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-<div id="banner">
-  <%= @page_title || "Attendance Sheet" %>
-</div>
-<div id="columns">
-  <div id="side">
-    <ul>
-	<li><%= link_to "Home", events_path %></li>
-	<li><%= link_to "New Events", new_event_path %></li>
-	<li><%= link_to "New Student", new_student_path %></li>
-	<li><a href="http://www..../contact">Contact</a></li>
-	<% if session[:student_id_number] %>
-	<li><%= session[:student_name] %> </li>
-	<li><%= link_to "logout", logout_path %> </li>
-	<li><%= link_to "going to", student_path(session[:id]) %> </li>
-	<% else %>
-	<li><%= link_to "login", login_path %> </li>
-	<% end %>
-   </ul>
- 	</div>
 
-<div id="main">
-<%= yield %>
-</div>
-</div>
+
+
+<body>
+<table id "main_table" cellspacing="0" cellpadding="0">
+<tr id = "r1">
+<td class = "c1"><%= @page_title || "Attendance Sheet" %></td>
+<td class = "c2"><ul>
+										<li><%= link_to "Home", events_path %></li>
+										<li><%= link_to "New Events", new_event_path %></li>
+										<li><%= link_to "New Student", new_student_path %></li>
+										<li><%= link_to "New User", new_user_path %></li>
+										<li><%= link_to "New Teacher", new_teacher_path %></li>
+								</ul>	</td>
+<td class = "c3"><%= button_to "Me", events_path, remote: true, :method => :get %></td>
+</tr>
+<tr id = "r2">
+<td class = "c1"></td>
+<td class = "c2"><%= yield %></td>
+<td class = "c3"><div id="right_side_panel">
+											<% if session[:id_number] %>
+												<% if Student.find_by_id_number(session[:id_number]) %>
+													<%= Student.find_by_id_number(session[:id_number]).name %>
+												<% elsif Teacher.find_by_id_number(session[:id_number]).name %> 
+													<% Teacher.find_by_id_number(session[:id_number]).name %>
+												<% end %>
+											<% end %>
+											<% if Student.find_by_id_number(session[:id_number]) %>
+												
+												<div id="student"><ul><li style="color:red;">Attending</li></ul><%= render Student.find_by_id_number(session[:id_number]) %></div>
+												<ul><% id = Student.find_by_id_number(session[:id_number]) %>
+												<li><%= link_to "going to", student_path(id) %> </li></ul>
+											<% end %>
+											<% if Teacher.find_by_id_number(session[:id_number]) %>
+												<div id="teacher"><ul><li style="color:red;">Teaching</li></ul><%= render Teacher.find_by_id_number(session[:id_number]) %></div>
+												<% id = Teacher.find_by_id_number(session[:id_number]) %>							
+												<ul><li><%= link_to "teaching", teacher_path(id) %> </li></ul>
+											<% end %>
+											<% if session[:id_number] === nil  %>
+												<ul><li><%= link_to "login", login_path %> </li></ul>
+											<% else %>
+												<ul>
+												<li><%= link_to "logout", logout_path %> </li>
+												</ul>
+											<% end %>
+								</div></td>
+</tr>
+<tr id = "r3">
+<td class = "c1"></td>
+<td class = "c2"></td>
+<td class = "c3"></td>
+</tr>
 </body>
+
+
+
 </html>
