@@ -1,5 +1,5 @@
 <ul>
-	<% student.attendances.each do |a| %>
+	<% right_order(student.attendances).each do |a| %>
 		<% e = Event.find(a.event_id) %>
 	<li><%= e.module %> </li>
 	<% end %>

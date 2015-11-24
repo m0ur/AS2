@@ -8,7 +8,7 @@ module StudentsHelper
 		end
 		
 
-		array.sort_by{ |a| diff(Event.find(a.event_id).day)}
+		array.sort_by{ |e| diff(Event.find(e.event_id).day)}
 
 	end
 

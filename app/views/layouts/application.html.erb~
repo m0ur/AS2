@@ -13,35 +13,49 @@
 <table id "main_table" cellspacing="0" cellpadding="0">
 <tr id = "r1">
 <td class = "c1"><%= @page_title || "Attendance Sheet" %></td>
-<td class = "c2"><ul>
+<td class = "c2"><div id="top_bar">
+								<ul>
 										<li><%= link_to "Home", events_path %></li>
 										<li><%= link_to "New Events", new_event_path %></li>
 										<li><%= link_to "New Student", new_student_path %></li>
 										<li><%= link_to "New User", new_user_path %></li>
 										<li><%= link_to "New Teacher", new_teacher_path %></li>
 								</ul>	</td>
+								</div>
 <td class = "c3"><%= button_to "Me", events_path, remote: true, :method => :get %></td>
 </tr>
 <tr id = "r2">
-<td class = "c1"></td>
+<td class = "c1">
+	<div id="left_side_panel">
+	<%if is_root %>
+	<ul>
+		<li>Root</li>
+		<li><%= link_to "students", students_path %></li>
+		<li><%= link_to "attendances", attendances_path %></li>
+		<li><%= link_to "teachers", teachers_path %></li>
+	</ul>
+	<% end %>
+	</div>
+
+</td>
 <td class = "c2"><%= yield %></td>
 <td class = "c3"><div id="right_side_panel">
 											<% if session[:id_number] %>
-												<% if Student.find_by_id_number(session[:id_number]) %>
-													<%= Student.find_by_id_number(session[:id_number]).name %>
-												<% elsif Teacher.find_by_id_number(session[:id_number]).name %> 
-													<% Teacher.find_by_id_number(session[:id_number]).name %>
+												<% if is_student %>
+													<%= get_student.name %>
+												<% elsif is_teacher %> 
+													<%= get_teacher.name %>
 												<% end %>
 											<% end %>
-											<% if Student.find_by_id_number(session[:id_number]) %>
+											<% if is_student %>
 												
-												<div id="student"><ul><li style="color:red;">Attending</li></ul><%= render Student.find_by_id_number(session[:id_number]) %></div>
-												<ul><% id = Student.find_by_id_number(session[:id_number]) %>
+												<div id="student"><ul><li style="color:red;">Attending</li></ul><%= render get_student %></div>
+												<ul><% id = get_student.id %>
 												<li><%= link_to "going to", student_path(id) %> </li></ul>
 											<% end %>
-											<% if Teacher.find_by_id_number(session[:id_number]) %>
-												<div id="teacher"><ul><li style="color:red;">Teaching</li></ul><%= render Teacher.find_by_id_number(session[:id_number]) %></div>
-												<% id = Teacher.find_by_id_number(session[:id_number]) %>							
+											<% if is_teacher %>
+												<div id="teacher"><ul><li style="color:red;">Teaching</li></ul><%= render get_teacher %></div>
+												<% id = get_teacher.id %>							
 												<ul><li><%= link_to "teaching", teacher_path(id) %> </li></ul>
 											<% end %>
 											<% if session[:id_number] === nil  %>

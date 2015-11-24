@@ -24,9 +24,9 @@ class AttendancesController < ApplicationController
   # POST /attendances
   # POST /attendances.json
   def create
-		if Event.find(session[:id_number])
+		if Event.find_by_id_number(session[:id_number])
 		 	event = Event.find(params[:event_id])
-			@student = Student.find_by_id_number(session[:id_number])		
+			@student = get_student
 			@attendance = @student.attendances.build(event: event)
 
 		  respond_to do |format|
@@ -40,6 +40,9 @@ class AttendancesController < ApplicationController
 		    end
 		  end
 		else
+			respond_to do |format|
+		      format.html {redirect_to events_path }
+		  end
 		
 		end
   end
@@ -61,14 +64,18 @@ class AttendancesController < ApplicationController
   # DELETE /attendances/1
   # DELETE /attendances/1.json
   def destroy
-		event = @attendance.event
-		@student = Student.find(session[:id])
-    @attendance.destroy
-    respond_to do |format|
-      format.html {redirect_to events_path }
-      format.json { head :no_content }
-			format.js
-    end
+		if is_root or get_student.id_number === @attendance.student.id_number or get_teacher.id_number === @attendance.event.id_number 
+			event = @attendance.event
+			@student = Student.find(session[:id])
+		  @attendance.destroy
+		  respond_to do |format|
+		    format.html {redirect_to events_path }
+		    format.json { head :no_content }
+				format.js
+		  end
+		else 
+			format.html {redirect_to events_path, notice: "you can't kick someone else out" }
+		end
   end
 
   private

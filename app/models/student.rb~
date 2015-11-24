@@ -1,3 +1,5 @@
 class Student < ActiveRecord::Base
-	has_many :attendances, line_items
+	has_many :attendances
+	validates :id_number, presence: true
+	validates :name, presence: true
 end

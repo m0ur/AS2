@@ -31,7 +31,7 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-		if Teacher.find_by_id_number(session[:id_number])
+		if is_teacher
 		  @event = Event.new(event_params)
 			@event.id_number = session[:id_number] 
 
@@ -43,7 +43,18 @@ class EventsController < ApplicationController
 		      format.html { render :new }
 		      format.json { render json: @event.errors, status: :unprocessable_entity }
 		    end
-		  end
+			end
+		elsif is_root
+			 	@event = Event.new(event_params)
+		  	respond_to do |format|
+		    	if @event.save
+				    format.html { redirect_to @event, notice: 'Event was successfully with su.' }
+				    format.json { render :show, status: :created, location: @event }
+				  else
+				    format.html { render :new }
+				    format.json { render json: @event.errors, status: :unprocessable_entity }
+		    	end
+		  	end
 		else
 			respond_to do |format|
 		      format.html { redirect_to events_path, notice: 'You must be a registered teacher to create events' }
@@ -68,6 +79,9 @@ class EventsController < ApplicationController
   # DELETE /events/1
   # DELETE /events/1.json
   def destroy
+		@event.attendances.each do |a|
+			a.destroy
+		end
     @event.destroy
     respond_to do |format|
       format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
@@ -83,6 +97,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:module, :category, :day, :time, :duration)
+      params.require(:event).permit(:module, :category, :day, :time, :duration, :id_number)
     end
 end

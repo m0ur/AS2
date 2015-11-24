@@ -1,7 +1,12 @@
-<% if Teacher.find_by_id_number(session[:id_number]) === event.id_number %>
-<% me = true %>
-<%else %>
 <% me = nil %>
+<% if is_teacher%>
+<% if get_teacher.id_number === event.id_number %>
+<% me = true %>
+
+<% end %>
+<% end %>
+<% if is_root %>
+<% me = true %>
 <% end %>
 
 <table class="info_table">
@@ -32,14 +37,13 @@
 
 <tr>
 	<td><%= button_to 'who\'s going?', event_path(event.id), :method => :get %></td>
-	<% if session[:id_number] %>
+	<% if is_student %>
 	<td><%= button_to 'going', attendances_path(event_id: event.id), remote: true %> </td>
 	<% else %>
 	<td></td>
 	<% end %>
-	<%= puts "hello" %>
-	<% if me %>
-	<td><%= button_to 'edit', events_path(event.id), method: :get%> </td>
+	<% if me===true %>
+	<td><%= button_to 'edit', edit_event_path(event), method: :get%> </td>
 	<td><%= button_to 'delete', events_path(event.id), method: :delete%> </td>
 	<% end %>
 </tr>
