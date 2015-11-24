@@ -4,12 +4,19 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
-  end
+		def diff a
+			week = {"Monday" =>0, "Tuesday" => 1, "Wednesday" => 2, "Thursday" => 3, "Friday" => 4, "Saturday" => 5, "Sunday" => 6}
+			today = Time.now.wday
+			((week[a]+1-today)%7)
+		end
+		@events = Event.all.sort_by{ |e| diff(e.day)}
+		end
+
 
   # GET /events/1
   # GET /events/1.json
   def show
+		
   end
 
   # GET /events/new

@@ -22,7 +22,7 @@
 	<td class = "entry_col"> <%= event.day %> </td>
 </tr>
 <tr class = "time_row">
-	<td class = "first_col"> Date</td>
+	<td class = "first_col"> Time</td>
 	<td class = "entry_col"> <%= event.time.to_formatted_s(:time) %> </td>
 </tr>
 <tr class = "duration_row">
@@ -32,11 +32,12 @@
 
 <tr>
 	<td><%= button_to 'who\'s going?', event_path(event.id), :method => :get %></td>
-	<% if session[:id] %>
+	<% if session[:id_number] %>
 	<td><%= button_to 'going', attendances_path(event_id: event.id), remote: true %> </td>
 	<% else %>
 	<td></td>
 	<% end %>
+	<%= puts "hello" %>
 	<% if me %>
 	<td><%= button_to 'edit', events_path(event.id), method: :get%> </td>
 	<td><%= button_to 'delete', events_path(event.id), method: :delete%> </td>

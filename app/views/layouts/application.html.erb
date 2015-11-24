@@ -30,7 +30,7 @@
 												<% if Student.find_by_id_number(session[:id_number]) %>
 													<%= Student.find_by_id_number(session[:id_number]).name %>
 												<% elsif Teacher.find_by_id_number(session[:id_number]).name %> 
-													<% Teacher.find_by_id_number(session[:id_number]).name %>
+													<%= Teacher.find_by_id_number(session[:id_number]).name %>
 												<% end %>
 											<% end %>
 											<% if Student.find_by_id_number(session[:id_number]) %>

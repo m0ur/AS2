@@ -32,14 +32,15 @@
 
 <tr>
 	<td><%= button_to 'who\'s going?', event_path(event.id), :method => :get %></td>
-	<% if session[:id] %>
+	<% if session[:id_number] %>
 	<td><%= button_to 'going', attendances_path(event_id: event.id), remote: true %> </td>
 	<% else %>
 	<td></td>
 	<% end %>
+	<%= puts "hello" %>
 	<% if me %>
 	<td><%= button_to 'edit', events_path(event.id), method: :get%> </td>
-	<td><%= button_to 'delete', events_path(event.id), method: :get%> </td>
+	<td><%= button_to 'delete', events_path(event.id), method: :delete%> </td>
 	<% end %>
 </tr>
 </table>
