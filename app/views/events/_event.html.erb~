@@ -43,8 +43,8 @@
 	<td></td>
 	<% end %>
 	<% if me===true %>
-	<td><%= button_to 'edit', edit_event_path(event.id), method: :get%> </td>
-	<td><%= button_to 'delete', events_path(event.id), method: :delete%> </td>
+	<td><%= button_to 'edit', edit_event_path(event), method: :get%> </td>
+	<td><%= button_to 'delete', event_path(event), method: :delete%> </td>
 	<% end %>
 </tr>
 </table>

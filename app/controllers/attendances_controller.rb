@@ -64,9 +64,7 @@ class AttendancesController < ApplicationController
   # DELETE /attendances/1
   # DELETE /attendances/1.json
   def destroy
-		if is_root or get_student.id_number === @attendance.student.id_number or get_teacher.id_number === @attendance.event.id_number 
-			event = @attendance.event
-			@student = Student.find(session[:id])
+		if is_root or (is_student and get_student.id_number === @attendance.student.id_number) or (is_teacher and get_teacher.id_number === @attendance.event.id_number)
 		  @attendance.destroy
 		  respond_to do |format|
 		    format.html {redirect_to events_path }
@@ -74,7 +72,7 @@ class AttendancesController < ApplicationController
 				format.js
 		  end
 		else 
-			format.html {redirect_to events_path, notice: "you can't kick someone else out" }
+			redirect_to events_path, notice: "you can't kick someone else out" 
 		end
   end
 
